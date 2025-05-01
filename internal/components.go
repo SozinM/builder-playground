@@ -25,6 +25,9 @@ func (r *RollupBoost) Run(service *service, ctx *ExContext) {
 			"--l2-url", Connect(r.ELNode, "authrpc"),
 			"--builder-jwt-path", "{{.Dir}}/jwtsecret",
 			"--builder-url", r.Builder,
+			"--flashblocks",
+			"--flashblocks-url", "ws://host.docker.internal:1111/",
+			"--flashblocks-outbound-url", "0.0.0.0:{{Port \"fb\" 1112}}",
 		)
 }
 
