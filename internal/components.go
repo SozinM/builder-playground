@@ -221,7 +221,7 @@ func (r *RethEL) ReleaseArtifact() *release {
 	return &release{
 		Name:    "reth",
 		Org:     "paradigmxyz",
-		Version: "v1.3.1",
+		Version: "v1.3.12",
 		Arch: func(goos, goarch string) string {
 			if goos == "linux" {
 				return "x86_64-unknown-linux-gnu"
@@ -256,7 +256,7 @@ func (r *RethEL) Run(svc *Service, ctx *ExContext) {
 	// start the reth el client
 	svc.
 		WithImage("ghcr.io/paradigmxyz/reth").
-		WithTag("v1.3.1").
+		WithTag("v1.3.12").
 		WithEntrypoint("/usr/local/bin/reth").
 		WithArgs(
 			"node",
