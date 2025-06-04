@@ -18,16 +18,18 @@ type RollupBoost struct {
 func (r *RollupBoost) Run(service *service, ctx *ExContext) {
 	service.
 		WithImage("docker.io/flashbots/rollup-boost").
-		WithTag("0.4rc1").
+		WithTag("0.4rc2").
 		WithArgs(
 			"--rpc-port", `{{Port "authrpc" 8551}}`,
+			"--rpc-host", `0.0.0.0`,
 			"--l2-jwt-path", "{{.Dir}}/jwtsecret",
 			"--l2-url", Connect(r.ELNode, "authrpc"),
 			"--builder-jwt-path", "{{.Dir}}/jwtsecret",
 			"--builder-url", r.Builder,
 			"--flashblocks",
-			"--flashblocks-url", "ws://host.docker.internal:1111/",
-			"--flashblocks-outbound-url", "0.0.0.0:{{Port \"fb\" 1112}}",
+			"--flashblocks-builder-url", "ws://host.docker.internal:1111/",
+			"--flashblocks-host", "0.0.0.0",
+			"--flashblocks-port", "{{Port \"fb\" 1112}}",
 		)
 }
 
